@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Killian BENABIDI — Portfolio</title>
+<style>
+/* ============================================================
+   THÈME — change les couleurs ici
+   ============================================================ */
+:root {
+  --bg: #fafaf9;
+  --fg: #0a0a0a;
+  --bg2: #f0f0ef;
+  --border: rgba(10,10,10,0.12);
+}
+html.dark {
+  --bg: #0a0a0a;
+  --fg: #fafaf9;
+  --bg2: #181818;
+  --border: rgba(255,255,255,0.12);
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif;
+  background:var(--bg);color:var(--fg);font-size:16px;line-height:1.5;
+  min-height:100vh;transition:background .25s,color .25s;
+}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+button{cursor:pointer;font-family:inherit}
+input,textarea{font-family:inherit}
+
+/* ============================================================
+   UTILITAIRES
+   ============================================================ */
+.wrap{max-width:1400px;margin:0 auto;padding:0 48px}
+.page{display:none;padding-top:130px;padding-bottom:4rem}
+.page.active{display:block}
+.section{margin-bottom:7rem}
+.label{font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;opacity:.4;margin-bottom:.4rem}
+.tag{display:inline-block;border:1px solid var(--border);padding:5px 14px;
+  font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;opacity:.6}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+@media(max-width:1024px){.grid3{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.grid2,.grid3,.grid4{grid-template-columns:1fr}.wrap{padding:0 20px}}
+
+/* ============================================================
+   NAVBAR
+   ============================================================ */
+.navbar{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:var(--bg);border-bottom:1px solid var(--border);
+  transition:background .25s;
+}
+.nav-inner{
+  max-width:1400px;margin:0 auto;padding:18px 48px;
+  display:flex;justify-content:space-between;align-items:flex-start;
+}
+@media(max-width:640px){.nav-inner{padding:14px 20px}}
+.logo{cursor:pointer}
+.logo-label{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;opacity:.4;display:block;margin-bottom:2px}
+.logo-name{font-size:1.4rem;text-transform:uppercase;letter-spacing:-.01em}
+.logo-name b{font-weight:700}
+.logo-name span{font-weight:300}
+.nav-right{display:flex;align-items:flex-start;gap:2.5rem}
+.nav-links{display:flex;gap:1.8rem;list-style:none;padding-top:6px}
+@media(max-width:900px){.nav-links{display:none}}
+.nav-links a{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;
+  opacity:.6;transition:opacity .2s;position:relative}
+.nav-links a:hover,.nav-links a.active{opacity:1}
+.nav-links a.active::after{content:'';position:absolute;bottom:-4px;left:0;right:0;
+  height:1px;background:var(--fg)}
+.nav-mobile{display:none;flex-wrap:wrap;gap:6px;
+  padding:0 20px 12px;max-width:1400px;margin:0 auto}
+@media(max-width:900px){.nav-mobile{display:flex}}
+.nav-mobile a{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
+  padding:5px 10px;border:1px solid var(--border);transition:all .2s}
+.nav-mobile a.active{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.mode-btn{
+  display:flex;align-items:center;gap:8px;
+  border:1px solid var(--border);padding:7px 14px;
+  background:transparent;color:inherit;
+  font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;
+  transition:background .2s;
+}
+.mode-btn:hover{background:rgba(128,128,128,.08)}
+.mode-dot{width:7px;height:7px;background:var(--fg);transition:transform .2s}
+.mode-btn:hover .mode-dot{transform:scale(1.4)}
+.mode-sep{width:1px;height:14px;background:var(--border)}
+
+/* ============================================================
+   TITRE HERO
+   ============================================================ */
+.hero-h{font-size:clamp(3rem,7vw,6.5rem);letter-spacing:-.02em;line-height:.9;margin-bottom:2.5rem}
+.hero-bar{display:flex;gap:14px;align-items:flex-start}
+.vline{width:2px;background:var(--fg);flex-shrink:0;min-height:60px;align-self:stretch}
+.hero-txt{font-size:1.1rem;opacity:.8;line-height:1.75}
+
+/* ============================================================
+   PORTRAIT
+   ============================================================ */
+.portrait{position:relative;overflow:hidden;background:var(--bg2)}
+.portrait.r34{aspect-ratio:3/4}
+.portrait img{width:100%;height:100%;object-fit:cover;display:block}
+.portrait-badge{
+  position:absolute;bottom:0;right:0;
+  background:var(--bg);border:1px solid var(--border);
+  padding:5px 14px;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase}
+.portrait-top{
+  position:absolute;top:0;left:0;right:0;
+  background:rgba(0,0,0,.5);backdrop-filter:blur(4px);
+  border-bottom:1px solid var(--border);
+  padding:10px 14px;display:flex;justify-content:space-between;align-items:center;
+  font-size:.62rem;letter-spacing:.2em;text-transform:uppercase}
+
+/* ============================================================
+   TIMELINE
+   ============================================================ */
+.timeline{position:relative;padding-left:70px}
+.timeline::before{content:'';position:absolute;left:20px;top:0;bottom:0;
+  width:2px;background:var(--border)}
+.tl-item{position:relative;margin-bottom:1.75rem}
+.tl-dot{position:absolute;left:-70px;width:42px;height:42px;
+  border:2px solid var(--border);background:var(--bg);
+  display:flex;align-items:center;justify-content:center;font-size:1rem}
+.tl-dot.hl{border-color:var(--fg);background:var(--fg);color:var(--bg)}
+.tl-box{border:1px solid var(--border);padding:1.75rem}
+.tl-box.hl{border-color:var(--fg);background:rgba(128,128,128,.03)}
+.tl-period{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;opacity:.55;margin-bottom:5px}
+.tl-title{font-size:1.3rem;font-weight:700;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:3px}
+.tl-sub{opacity:.8;margin-bottom:2px}
+.tl-loc{font-size:.85rem;opacity:.55}
+.tl-desc{font-size:.9rem;opacity:.65;line-height:1.6;margin-top:10px}
+.tl-head{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}
+.tl-badge{background:var(--fg);color:var(--bg);padding:3px 10px;
+  font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;flex-shrink:0}
+
+/* ============================================================
+   GRILLE PROJETS
+   ============================================================ */
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem}
+@media(max-width:1200px){.proj-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.proj-grid{grid-template-columns:1fr}}
+.pcard{cursor:pointer}
+.pcard-img{position:relative;aspect-ratio:4/5;overflow:hidden;
+  background:var(--bg2);margin-bottom:.9rem;border:1px solid var(--border)}
+.pcard-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s}
+.pcard:hover .pcard-img img{transform:scale(1.05)}
+.pbadge{position:absolute;background:var(--bg);border:1px solid var(--border);
+  padding:3px 10px;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase}
+.pbadge.tl{top:0;left:0}
+.pbadge.tr{top:0;right:0;opacity:.6}
+.pcard-overlay{position:absolute;bottom:0;left:0;right:0;
+  background:var(--bg);opacity:0;padding:10px;transition:opacity .3s}
+.pcard:hover .pcard-overlay{opacity:.95}
+.pcard-title{font-size:1.05rem;font-weight:700;text-transform:uppercase;
+  letter-spacing:-.01em;margin-bottom:3px;transition:opacity .2s}
+.pcard:hover .pcard-title{opacity:.55}
+.pcard-desc{font-size:.82rem;opacity:.55;line-height:1.5}
+.ptags{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px}
+.ptag{font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;
+  border:1px solid var(--border);padding:3px 7px;opacity:.55}
+
+/* ============================================================
+   BOUTONS
+   ============================================================ */
+.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 26px;
+  font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;
+  border:none;transition:all .2s;cursor:pointer;font-family:inherit}
+.btn-outline{border:1px solid var(--border);background:transparent;color:inherit}
+.btn-outline:hover{background:rgba(128,128,128,.08)}
+.btn-solid{background:var(--fg);color:var(--bg);border:1px solid var(--fg)}
+.btn-solid:hover{opacity:.8}
+.btn-border{border:1px solid var(--fg);background:transparent;color:inherit}
+.btn-border:hover{background:var(--fg);color:var(--bg)}
+
+/* ============================================================
+   PHILOSOPHIE / CTA
+   ============================================================ */
+.phil-grid{display:grid;grid-template-columns:4fr 8fr;gap:4rem;align-items:start}
+@media(max-width:1024px){.phil-grid{grid-template-columns:1fr}}
+.phil-text{font-size:1.1rem;opacity:.8;line-height:1.8}
+.phil-text p+p{margin-top:1.4rem}
+.cta-block{border:1px solid var(--border);padding:3.5rem}
+@media(max-width:768px){.cta-block{padding:1.75rem}}
+.cta-inner{display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap}
+
+/* ============================================================
+   MES PROJETS — FILTRES
+   ============================================================ */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:.75rem}
+.filter-btn{border:1px solid var(--border);padding:9px 18px;
+  background:transparent;color:inherit;
+  font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;transition:all .2s}
+.filter-btn:hover,.filter-btn.active{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.filter-count{display:flex;align-items:center;gap:10px;font-size:.85rem;opacity:.55}
+.fline{width:36px;height:1px;background:var(--border)}
+
+/* ============================================================
+   STATS
+   ============================================================ */
+.stat-card{border:1px solid var(--border);padding:2rem;text-align:center}
+.stat-n{font-size:2.3rem;font-weight:700;margin-bottom:5px}
+.stat-l{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;opacity:.55}
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.form-label{display:block;font-size:.62rem;letter-spacing:.2em;
+  text-transform:uppercase;opacity:.55;margin-bottom:9px}
+.form-input,.form-textarea{width:100%;border:1px solid var(--border);
+  padding:11px 14px;background:transparent;color:inherit;font-size:1rem;
+  outline:none;transition:border-color .2s}
+.form-input:focus,.form-textarea:focus{border-color:var(--fg)}
+.form-textarea{resize:vertical;min-height:180px}
+.form-2col{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem}
+@media(max-width:640px){.form-2col{grid-template-columns:1fr}}
+.form-group{margin-bottom:1.3rem}
+.info-card{border:1px solid var(--border);padding:1.4rem;margin-bottom:1.3rem}
+.info-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem}
+.info-label{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;opacity:.55}
+.info-link{display:flex;align-items:center;gap:8px;font-size:1.05rem;transition:opacity .2s}
+.info-link:hover{opacity:.55}
+.status-card{background:var(--fg);color:var(--bg);padding:1.4rem}
+.status-hd{display:flex;align-items:center;gap:7px;margin-bottom:5px}
+.pulse{width:8px;height:8px;background:var(--bg);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+.status-lbl{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase}
+
+/* ============================================================
+   PAGES COMPÉTENCES
+   ============================================================ */
+.comp-header{display:grid;grid-template-columns:1fr auto;gap:2rem;
+  align-items:flex-end;margin-bottom:2.5rem}
+@media(max-width:768px){.comp-header{grid-template-columns:1fr}}
+.comp-icon-row{display:flex;align-items:center;gap:1rem;margin-bottom:1.3rem}
+.comp-icon{font-size:2.8rem}
+.comp-badge{border:1px solid var(--border);padding:7px 14px;
+  font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;opacity:.55}
+.comp-page-title{font-size:clamp(2.8rem,6vw,5rem);font-weight:700;
+  text-transform:uppercase;letter-spacing:-.02em;line-height:.9;margin-bottom:1.8rem}
+.year-btn{border:1px solid var(--border);padding:10px 22px;
+  background:transparent;color:inherit;
+  font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;
+  margin-right:8px;margin-bottom:8px;transition:all .2s}
+.year-btn:hover,.year-btn.active{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.btn-evo{display:inline-flex;align-items:center;gap:10px;
+  border:2px solid var(--fg);padding:13px 20px;
+  background:transparent;color:inherit;
+  font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;
+  transition:all .2s}
+.btn-evo:hover{background:var(--fg);color:var(--bg)}
+
+/* ============================================================
+   COMPÉTENCES HOME ACADÉMIQUE
+   ============================================================ */
+.comp-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+@media(max-width:1024px){.comp-cards{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.comp-cards{grid-template-columns:1fr}}
+.comp-card{border:1px solid var(--border);padding:1.8rem;cursor:pointer;transition:background .2s}
+.comp-card:hover{background:rgba(128,128,128,.05)}
+.comp-card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.3rem}
+.comp-num{background:var(--fg);color:var(--bg);padding:4px 11px;
+  font-size:.82rem;letter-spacing:.1em}
+.comp-card-title{font-size:1.4rem;font-weight:700;text-transform:uppercase;
+  letter-spacing:-.01em;margin-bottom:6px}
+.comp-card-desc{font-size:.85rem;opacity:.75;line-height:1.5}
+
+/* ============================================================
+   PARCOURS ACADÉMIQUE
+   ============================================================ */
+.path-item{border:1px solid var(--border);padding:2.2rem;
+  display:grid;grid-template-columns:auto 1fr;gap:1.8rem;
+  align-items:start;margin-bottom:1.4rem}
+@media(max-width:640px){.path-item{grid-template-columns:1fr;padding:1.4rem}}
+.path-year{background:var(--fg);color:var(--bg);padding:7px 14px;
+  font-size:1rem;font-weight:700;white-space:nowrap;align-self:start}
+.path-title{font-size:1.35rem;font-weight:700;text-transform:uppercase;
+  letter-spacing:-.01em;margin-bottom:3px}
+.path-sub{font-size:.82rem;opacity:.55;margin-bottom:10px}
+.path-desc{opacity:.8;line-height:1.7}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer{border-top:1px solid var(--border);margin-top:3rem}
+.footer-inner{max-width:1400px;margin:0 auto;padding:4.5rem 48px}
+@media(max-width:640px){.footer-inner{padding:3rem 20px}}
+.footer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3rem;margin-bottom:3rem}
+@media(max-width:768px){.footer-grid{grid-template-columns:1fr;gap:2rem}}
+.footer-nav{list-style:none}
+.footer-nav li{margin-bottom:5px}
+.footer-nav a{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;
+  opacity:.55;transition:opacity .2s}
+.footer-nav a:hover{opacity:1}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;
+  padding-top:1.8rem;border-top:1px solid var(--border);flex-wrap:wrap;gap:1rem}
+.footer-copy{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;opacity:.4}
+.back-top{background:transparent;border:none;color:inherit;
+  display:flex;align-items:center;gap:6px;
+  font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;opacity:.55;transition:opacity .2s}
+.back-top:hover{opacity:1}
+
+/* ============================================================
+   MODALS
+   ============================================================ */
+.overlay{display:none;position:fixed;inset:0;z-index:200;
+  background:rgba(0,0,0,.75);align-items:center;justify-content:center}
+.overlay.open{display:flex}
+.modal-box{background:var(--bg);border:1px solid var(--border);
+  width:96vw;max-width:1350px;max-height:96vh;
+  display:flex;flex-direction:column;overflow:hidden}
+.modal-head{border-bottom:1px solid var(--border);padding:1.5rem 2.2rem;
+  flex-shrink:0;display:flex;justify-content:space-between;
+  gap:1.4rem;align-items:flex-start}
+.modal-tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:.9rem}
+.modal-tag{border:1px solid var(--border);padding:4px 13px;
+  font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;opacity:.55}
+.modal-title{font-size:clamp(1.5rem,4vw,2.8rem);font-weight:700;
+  letter-spacing:-.02em;line-height:1;margin-bottom:3px}
+.modal-subtitle{font-size:1.05rem;opacity:.55}
+.modal-close{border:1px solid var(--border);padding:10px;background:transparent;
+  color:inherit;flex-shrink:0;transition:background .2s;line-height:0}
+.modal-close:hover{background:rgba(128,128,128,.08)}
+.modal-close svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2}
+.modal-body{overflow-y:auto;flex:1;padding:2.2rem 2.8rem}
+@media(max-width:640px){.modal-body{padding:1.4rem}.modal-head{padding:1.4rem}}
+
+/* ============================================================
+   CARROUSEL
+   ============================================================ */
+.carousel{border:1px solid var(--border);margin-bottom:2.5rem;background:var(--bg2)}
+.car-main{position:relative;aspect-ratio:16/9;max-height:58vh;overflow:hidden}
+.car-main img{width:100%;height:100%;object-fit:cover;display:block}
+.car-btn{position:absolute;top:50%;transform:translateY(-50%);
+  background:rgba(250,250,249,.9);border:1px solid var(--border);
+  padding:13px;color:#0a0a0a;transition:background .2s}
+html.dark .car-btn{background:rgba(10,10,10,.9);color:#fafaf9}
+.car-btn:hover{background:var(--bg)}
+.car-btn.prev{left:18px}
+.car-btn.next{right:18px}
+.car-btn svg{width:26px;height:26px;stroke:currentColor;fill:none;stroke-width:2}
+.car-counter{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);
+  background:rgba(250,250,249,.9);border:1px solid var(--border);
+  padding:5px 18px;font-size:.82rem;color:#0a0a0a}
+html.dark .car-counter{background:rgba(10,10,10,.9);color:#fafaf9}
+.car-thumbs{padding:1.1rem;display:flex;gap:9px;overflow-x:auto;justify-content:center}
+.car-thumb{aspect-ratio:16/9;width:100px;flex-shrink:0;
+  border:2px solid transparent;overflow:hidden;opacity:.45;transition:all .2s;cursor:pointer}
+.car-thumb:hover{opacity:.75}
+.car-thumb.active{border-color:var(--fg);opacity:1}
+.car-thumb img{width:100%;height:100%;object-fit:cover}
+
+/* ============================================================
+   SECTIONS MODAL PROJET
+   ============================================================ */
+.ms{margin-bottom:2.2rem}
+.ms-title{font-size:1.35rem;font-weight:700;text-transform:uppercase;
+  letter-spacing:-.01em;margin-bottom:1.1rem;
+  display:flex;align-items:baseline;gap:12px}
+.ms-num{font-size:.68rem;letter-spacing:.28em;opacity:.35}
+.ms-text{border-left:2px solid var(--fg);padding-left:1.4rem;
+  font-size:.97rem;line-height:1.8;opacity:.8}
+.ac-sep{border-top:2px solid var(--border);padding-top:2.2rem;margin-top:.5rem}
+.ac-main-title{font-size:1.35rem;font-weight:700;text-transform:uppercase;margin-bottom:.8rem}
+.ac-demo{font-size:.97rem;line-height:1.8;opacity:.8;margin-bottom:1.8rem}
+.ac-list{display:flex;flex-direction:column;gap:1.1rem}
+.ac-card{border:2px solid var(--fg);padding:1.6rem;background:rgba(128,128,128,.02)}
+.ac-head{display:flex;justify-content:space-between;align-items:flex-start;
+  margin-bottom:1.1rem;flex-wrap:wrap;gap:7px}
+.ac-badges{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.ac-code{background:var(--fg);color:var(--bg);padding:4px 13px;
+  font-size:.82rem;font-weight:700;letter-spacing:.1em}
+.ac-comp{border:1px solid var(--border);padding:4px 13px;
+  font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;opacity:.55}
+.ac-type{border:1px solid rgba(128,128,128,.3);padding:4px 13px;
+  font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;opacity:.55}
+.ac-title{font-size:.97rem;font-weight:700;text-transform:uppercase;
+  letter-spacing:-.01em;margin-bottom:5px}
+.ac-expl{font-size:.85rem;opacity:.65;line-height:1.7}
+
+/* ============================================================
+   MODAL ÉVOLUTION
+   ============================================================ */
+.evo-box{background:var(--bg);border:1px solid var(--border);
+  width:90vw;max-width:860px;max-height:90vh;
+  display:flex;flex-direction:column;overflow:hidden}
+.evo-head{border-bottom:1px solid var(--border);padding:1.8rem;flex-shrink:0;
+  display:flex;justify-content:space-between;align-items:flex-start;
+  background:var(--bg)}
+.evo-body{overflow-y:auto;flex:1;padding:1.8rem}
+.evo-st{font-size:1.05rem;font-weight:700;text-transform:uppercase;margin-bottom:1.3rem;margin-top:1.8rem}
+.evo-st:first-child{margin-top:0}
+.gauge-wrap{border:1px solid var(--border);padding:1.4rem;
+  background:rgba(128,128,128,.02);margin-bottom:1.4rem}
+.gauge-item{margin-bottom:1.8rem}
+.gauge-item:last-child{margin-bottom:0}
+.gauge-hd{display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:9px;flex-wrap:wrap;gap:7px}
+.gauge-l{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.gauge-period{background:var(--fg);color:var(--bg);padding:3px 11px;
+  font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.gauge-desc{font-size:.82rem;opacity:.55}
+.gauge-count{border:1px solid var(--border);padding:5px 14px;font-size:1rem;font-weight:700}
+.gauge-bar{height:44px;border:2px solid var(--border);background:var(--bg);overflow:hidden}
+.gauge-fill{height:100%;background:var(--fg);display:flex;align-items:center;justify-content:flex-end;padding-right:11px}
+.gauge-n{color:var(--bg);font-size:.82rem;font-weight:700}
+.prog-list{display:flex;flex-direction:column;gap:9px;margin-bottom:1.4rem}
+.prog-item{border:1px solid var(--border);padding:13px 18px;
+  display:flex;gap:13px;align-items:flex-start}
+.prog-badge{background:var(--fg);color:var(--bg);padding:3px 9px;
+  font-size:.6rem;font-weight:700;flex-shrink:0;white-space:nowrap}
+.prog-period{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;opacity:.55;margin-bottom:3px}
+.prog-text{font-size:.82rem;opacity:.75;line-height:1.55}
+.refl-list{display:flex;flex-direction:column;gap:1.3rem}
+.refl-item{border-left:2px solid var(--fg);padding-left:1.3rem}
+.refl-year{display:inline-block;background:var(--fg);color:var(--bg);
+  padding:3px 10px;font-size:.6rem;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;margin-bottom:5px}
+.refl-text{font-size:.82rem;opacity:.75;line-height:1.55}
+.empty-state{border:1px solid var(--border);padding:2.5rem;text-align:center;opacity:.55;font-size:1rem}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:var(--bg2)}
+::-webkit-scrollbar-thumb{background:var(--border)}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAVBAR
+     ============================================================ -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <div class="logo" id="logo">
+      <span class="logo-label">Portfolio</span>
+      <div class="logo-name"><b>Killian</b> <span>BENABIDI</span></div>
+    </div>
+    <div class="nav-right">
+      <ul class="nav-links" id="nav-links"></ul>
+      <button class="mode-btn" id="mode-toggle">
+        <span id="mode-label">Professionnel</span>
+        <span class="mode-sep"></span>
+        <span class="mode-dot"></span>
+      </button>
+    </div>
+  </div>
+  <div class="nav-mobile" id="nav-mobile"></div>
+</nav>
+
+<!-- ============================================================
+     PAGE HOME (remplie par JS selon le mode)
+     ============================================================ -->
+<div class="page" id="page-home"></div>
+
+<!-- ============================================================
+     PAGE MES PROJETS (mode professionnel)
+     ============================================================ -->
+<div class="page" id="page-mes-projets">
+  <div class="wrap">
+    <div class="section">
+      <div class="grid2" style="align-items:end;margin-bottom:3.5rem">
+        <div>
+          <p class="label">Portfolio</p>
+          <h1 class="hero-h"><b>Mes</b><br><span style="font-weight:300">Projets</span></h1>
+        </div>
+        <p class="hero-txt">Une sélection de mes projets en UX/UI design, branding, design éditorial et communication digitale.</p>
+      </div>
+      <div class="filters" id="mp-filters"></div>
+      <div class="filter-count"><span class="fline"></span><span id="mp-count">6 projets</span></div>
+      <div class="proj-grid" style="margin-top:2.5rem" id="mp-grid"></div>
+    </div>
+    <div class="section">
+      <div class="grid4">
+        <div class="stat-card"><div class="stat-n">🎯</div><div class="stat-l">Communication</div></div>
+    <div class="stat-card"><div class="stat-n">🎨</div><div class="stat-l">Identité visuelle</div></div>
+    <div class="stat-card"><div class="stat-n">📱</div><div class="stat-l">UX / UI Design</div></div>
+    <div class="stat-card"><div class="stat-n">💻</div><div class="stat-l">Développement web</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     PAGE CONTACT (mode professionnel)
+     ============================================================ -->
+<div class="page" id="page-contact">
+  <div class="wrap">
+    <div class="section">
+      <div class="grid2" style="align-items:end;margin-bottom:3.5rem">
+        <div>
+          <p class="label">Prise de contact</p>
+          <h1 class="hero-h"><b>Créons</b><br><span style="font-weight:300">Quelque Chose</span><br><b>Ensemble</b></h1>
+        </div>
+        <div class="hero-bar">
+          <div class="vline"></div>
+          <p class="hero-txt">Disponible pour des projets freelance, des collaborations et toutes autres opportunités. Discutons de comment travailler ensemble.</p>
+        </div>
+      </div>
+      <div class="grid2" style="gap:4rem">
+        <div>
+          <p class="label">01 / Message</p>
+          <h2 style="font-size:1.8rem;font-weight:700;text-transform:uppercase;margin-bottom:1.8rem"><b>Envoyer</b> <span style="font-weight:300">un Message</span></h2>
+          <form onsubmit="event.preventDefault();alert('Message envoyé !')">
+            <div class="form-2col">
+              <div class="form-group"><label class="form-label">Nom</label><input class="form-input" type="text" placeholder="Votre nom" required></div>
+              <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" placeholder="votre@email.com" required></div>
+            </div>
+            <div class="form-group"><label class="form-label">Sujet</label><input class="form-input" type="text" placeholder="Sujet de votre message" required></div>
+            <div class="form-group"><label class="form-label">Message</label><textarea class="form-textarea" placeholder="Votre message..." required></textarea></div>
+            <button class="btn btn-border" type="submit">Envoyer →</button>
+            <p class="form-consent">
+            En envoyant ce formulaire, vous acceptez que les informations saisies soient utilisées uniquement dans le cadre de votre demande de contact.
+            </p>
+            <label class="checkbox">
+            <input type="checkbox" required>
+            J'accepte que mes données soient utilisées afin de traiter ma demande de contact.
+            </label>
+          </form>
+        </div>
+        <div>
+          <p class="label">02 / Infos</p>
+          <h2 style="font-size:1.8rem;font-weight:700;text-transform:uppercase;margin-bottom:1.8rem"><b>Coordonnées</b></h2>
+          <!-- ↓ MODIFIE TON EMAIL ICI -->
+          <div class="info-card">
+            <div class="info-hd"><span class="info-label">Email</span>✉️</div>
+            <a href="mailto:killian.benabidi@gmail.com" class="info-link">killian.benabidi@gmail.com</a>
+          </div>
+          <!-- ↓ MODIFIE TA VILLE ICI -->
+          <div class="info-card">
+            <div class="info-hd"><span class="info-label">Localisation</span></div>
+            <span style="font-size:1.05rem">Provence-Alpes-Côte-d'Azur, France</span>
+          </div>
+          <!-- ↓ MODIFIE TES LIENS SOCIAUX ICI -->
+          <div class="info-card">
+            <div class="info-hd"><span class="info-label">Réseaux Sociaux</span></div>
+            <div style="display:flex;flex-direction:column;gap:9px">
+              <a href="https://www.linkedin.com/in/killian-benabidi/" target="_blank" class="info-link">🔗 LinkedIn</a>
+            <!--  <a href="https://instagram.com/tonprofil" target="_blank" class="info-link">📸 Instagram</a>
+              <a href="https://behance.net/tonprofil" target="_blank" class="info-link"><b>Be</b> Behance</a> -->
+            </div>
+          </div>
+          <div class="status-card">
+            <div class="status-hd"><span class="pulse"></span><span class="status-lbl">Statut</span></div>
+            <p style="font-size:1.05rem">Disponible pour des projets</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     PAGES COMPÉTENCES (mode académique — remplies par JS)
+     ============================================================ -->
+<div class="page" id="page-comp-comprendre"></div>
+<div class="page" id="page-comp-concevoir"></div>
+<div class="page" id="page-comp-exprimer"></div>
+<div class="page" id="page-comp-developper"></div>
+<div class="page" id="page-comp-entreprendre"></div>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <p class="label" style="margin-bottom:5px">Portfolio</p>
+        <div class="logo-name" style="margin-bottom:7px"><b>Killian</b> <span>BENABIDI</span></div>
+        <p style="font-size:.85rem;opacity:.55">Designer UX/UI & Étudiant en BUT Métiers du Multimédia et de l'Internet</p>
+      </div>
+      <div>
+        <p class="label" style="margin-bottom:1rem">Navigation</p>
+        <ul class="footer-nav" id="footer-nav"></ul>
+      </div>
+      <div>
+        <p class="label" style="margin-bottom:1rem">Contact</p>
+        <div style="display:flex;flex-direction:column;gap:5px;font-size:.85rem;opacity:.55">
+          <a href="mailto:killian.benabidi@email.com" style="color:inherit;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity='.55'">killian.benabidi@gmail.com</a>
+          <a href="https://linkedin.com/in/killian-benabidi/" target="_blank" style="color:inherit;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity='.55'">LinkedIn</a>
+        <!--  <a href="https://behance.net" target="_blank" style="color:inherit;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity='.55'">Behance</a>
+          <a href="https://instagram.com" target="_blank" style="color:inherit;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity='.55'">Instagram</a>-->
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© Killian BENABIDI – 2026 - Tous droits réservés</span>
+          <div class="footer-bottom">
+    <a href="mentions-legales.html">Mentions légales</a>
+    <a href="politique-confidentialite.html">Politique de confidentialité</a>
+  </div>
+     </div>
+      <button class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">Retour en haut ↑</button>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     MODAL PROJET
+     ============================================================ -->
+<div class="overlay" id="proj-overlay">
+  <div class="modal-box">
+    <div class="modal-head">
+      <div>
+        <div class="modal-tags" id="proj-tags"></div>
+        <h2 class="modal-title" id="proj-title"></h2>
+        <p class="modal-subtitle" id="proj-subtitle"></p>
+      </div>
+      <button class="modal-close" id="proj-close">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="carousel">
+        <div class="car-main">
+          <img id="car-img" src="" alt="">
+          <button class="car-btn prev" id="car-prev"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+          <button class="car-btn next" id="car-next"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
+          <div class="car-counter" id="car-counter"></div>
+        </div>
+        <div class="car-thumbs" id="car-thumbs"></div>
+      </div>
+      <div class="ms"><h3 class="ms-title"><span class="ms-num">01.</span>Contexte</h3><p class="ms-text" id="proj-context"></p></div>
+      <div class="ms"><h3 class="ms-title"><span class="ms-num">02.</span>Mission</h3><p class="ms-text" id="proj-mission"></p></div>
+      <div class="ms"><h3 class="ms-title"><span class="ms-num">03.</span>Réalisation</h3><p class="ms-text" id="proj-realization"></p></div>
+      <div class="ac-sep">
+        <h3 class="ac-main-title">Apprentissages Critiques</h3>
+        <p class="ac-demo" id="proj-demo"></p>
+        <div class="ac-list" id="proj-ac-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     MODAL ÉVOLUTION
+     ============================================================ -->
+<div class="overlay" id="evo-overlay">
+  <div class="evo-box">
+    <div class="evo-head">
+      <div>
+        <p class="label" style="margin-bottom:5px">Évolution de compétence</p>
+        <h2 style="font-size:1.6rem;font-weight:700;text-transform:uppercase" id="evo-title"></h2>
+      </div>
+      <button class="modal-close" id="evo-close">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="evo-body">
+      <div class="evo-st">Progression annuelle</div>
+      <div class="gauge-wrap" id="evo-gauges"></div>
+      <div class="evo-st">Points de progression</div>
+      <div class="prog-list" id="evo-prog"></div>
+      <div class="evo-st">Réflexions et apprentissages</div>
+      <div class="refl-list" id="evo-refl"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ================================================================
+   ✏️  SECTION À MODIFIER — TES PROJETS
+   ================================================================
+   Pour chaque projet :
+   - image    : l'image de couverture (carte)
+   - images   : les images du carrousel (autant que tu veux)
+   - title    : nom du projet
+   - year     : BUT1 / BUT2 / BUT3 / Alternance
+   - domain   : domaines du projet (pour les filtres)
+   - subtitle : sous-titre affiché dans la modal
+   - context, mission, realization, demonstration : textes de la modal
+   - acs      : liste des AC (code, comp, compName, title, expl)
+
+   Pour tes propres images :
+   → Mets tes photos dans un dossier "images/" à côté du fichier HTML
+   → Remplace l'URL par : "images/nom-de-ton-fichier.jpg"
+================================================================ */
+var PROJECTS = [
+  {
+    id: "onestowatch",
+    image: "media/COVER_OTW.jpg",
+    images: [
+      "media/COVER_OTW.jpg",
+      "media/MAGAZINE_OTW_2.jpg",
+      "media/MAGAZINE_OTW_3.jpg",
+    ],
+    title: "Ones to Watch",
+    year: "BUT1",
+    subtitle: "Design Éditorial • Culture Sneaker & Streetwear",
+    domain: ["graphisme","direction artistique","édition","mise en page"],
+    context: "Ce projet s'est concentré sur le design éditorial, la hiérarchie visuelle et la direction artistique à travers la création d'un magazine de trois pages inspiré de la culture sneaker et streetwear.",
+    mission: "L'objectif était de démontrer la maîtrise de la composition de mise en page, de la typographie et de la cohérence éditoriale tout en capturant l'essence de la mode urbaine et de la culture sneaker.",
+    realization: "J'ai développé une direction artistique brutalist-chic combinant typographies industrielles, systèmes de grille éditoriale asymétriques et sélection d'images de haute qualité.",
+    demonstration: "Ce projet met en avant la composition de mise en page, la typographie, la sélection d'images et la cohérence éditoriale à travers une direction artistique forte.",
+    acs: [
+      {code:"AC11.04",comp:"1",compName:"Comprendre",title:"Analyser des formes médiatiques et leur sémiotique",expl:"Analyse approfondie des codes visuels issus de la culture sneaker et streetwear pour comprendre leur sémiotique et les traduire en composition éditoriale cohérente."},
+      {code:"AC13.02",comp:"3",compName:"Exprimer",title:"Produire des pistes graphiques et des planches d'inspiration",expl:"Création de moodboards explorant l'esthétique brutaliste, les typographies industrielles et les références visuelles du streetwear haut de gamme pour établir la direction artistique."},
+      {code:"AC13.03",comp:"3",compName:"Exprimer",title:"Créer, composer et retoucher des visuels",expl:"Composition de mises en page éditoriales complexes avec sélection et retouche d'images, création d'éléments graphiques et assemblage typographique pour former un ensemble cohérent."}
+    ]
+  },
+  {
+    id: "sae-banque",
+    image: "media/COVER_DEDALE.jpg",
+    images: [
+      "media/COVER_DEDALE.jpg",
+      "media/PICTO_DEDALE.jpg",
+      "media/CB_DEDALE.jpg",
+      "media/APPLI_DEDALE.jpg",
+      "media/GOODIES_DEDALE.jpg",
+      "media/PUB_DEDALE.jpg"
+    ],
+    title: "SAÉ Banque en Ligne",
+    year: "BUT1",
+    subtitle: "Identité Graphique • UX/UI Design • Branding",
+    domain: ["UX/UI","branding","communication","identité visuelle","mockup"],
+    context: "Projet fictif de banque en ligne conçu après analyse de plusieurs banques concurrentes afin de construire une identité de marque cohérente, des interfaces UX/UI et une stratégie de communication adaptée à une cible jeune et active.",
+    mission: "Créer de A à Z une banque en ligne innovante : définir l'identité de marque, identifier les cibles, construire une proposition de valeur différenciante, concevoir les interfaces web et élaborer une recommandation marketing complète.",
+    realization: "J'ai réalisé une analyse concurrentielle de N26, Revolut et Boursorama. J'ai défini une cible principale (jeunes actifs 25-35 ans), construit une identité visuelle moderne, conçu des wireframes et interfaces UI pour les parcours clés.",
+    demonstration: "Ce projet démontre ma capacité à mener une analyse stratégique, définir une proposition de valeur, construire une identité de marque cohérente et concevoir des interfaces utilisateurs centrées sur les besoins.",
+    acs: [
+      {
+  code:"AC11.05",
+  comp:"1",
+  compName:"Comprendre",
+  title:"Identifier les cibles",
+  expl:"Analyse et définition des personas de Dédale à travers l'identification des caractéristiques démographiques, comportementales et culturelles des utilisateurs visés par le projet."
+},
+{
+  code:"AC12.02",
+  comp:"2",
+  compName:"Concevoir",
+  title:"Construire la proposition de valeur d’un produit ou d’un service",
+  expl:"Définition de la proposition de valeur de Dédale en mettant en avant ses bénéfices, ses éléments différenciants et sa réponse aux besoins des utilisateurs ciblés."
+},
+{
+  code:"AC12.03",
+  comp:"2",
+  compName:"Concevoir",
+  title:"Proposer une recommandation marketing",
+  expl:"Élaboration d'une recommandation marketing intégrant les cibles, les objectifs de communication et les principaux points de contact permettant d'atteindre efficacement les utilisateurs."
+},
+{
+  code:"AC12.04",
+  comp:"2",
+  compName:"Concevoir",
+  title:"Proposer une stratégie de communication",
+  expl:"Conception d'une stratégie de communication cohérente définissant les messages clés, les canaux de diffusion et les actions à mettre en œuvre pour développer la visibilité de Dédale."
+},
+{
+  code:"AC13.02",
+  comp:"3",
+  compName:"Exprimer",
+  title:"Produire des pistes graphiques et des planches d’inspiration",
+  expl:"Création de moodboards, recherches graphiques et pistes visuelles permettant de définir l'univers esthétique et l'identité du projet Dédale."
+},
+{
+  code:"AC25.02",
+  comp:"5",
+  compName:"Entreprendre",
+  title:"Cartographier un écosystème",
+  expl:"Identification et analyse des différents acteurs de l'écosystème Prismatik (consommateurs, concurrents, influenceurs, distributeurs et partenaires) afin de définir le positionnement de la marque."
+},
+
+    ]
+  },
+  {
+    id: "prismatik",
+    image: "media/COVER_PRISMATIK.jpg",
+    images: [
+      "media/COVER_PRISMATIK.jpg",
+      "media/SNEAKERS_PRISMATIK.jpg",
+      "media/PUB_PRISMATIK.jpg",
+      "media/TRIPTIQUE_PRISMATIK.jpg",
+      "media/TRIPTIQUE-2_PRISMATIK.jpg"
+    ],
+    title: "Prismatik",
+    year: "BUT2",
+    subtitle: "Branding • E-Commerce • Stratégie Digitale • Design • UX/UI Design",
+    domain: ["branding","UX/UI","développement web","communication","SEO","e-commerce"],
+    context: "Prismatik est un projet complet de branding et d'e-commerce mêlant direction artistique, culture sneaker, développement web et communication digitale.",
+    mission: "Concevoir et déployer une marque de sneakers complète : identité visuelle, site e-commerce WordPress/WooCommerce, stratégie SEO, présence réseaux sociaux et communication 360°.",
+    realization: "J'ai développé l'identité complète de Prismatik (naming, logo, charte graphique, ton de voix), un site WordPress/WooCommerce complet et une stratégie SEO + ligne éditoriale Instagram/TikTok.",
+    demonstration: "Le projet combine branding, SEO, stratégie de réseaux sociaux et développement WordPress en un écosystème cohérent.",
+    acs: [
+{
+  code:"AC21.01",
+  comp:"1",
+  compName:"Comprendre",
+  title:"Analyser la stratégie de communication ou marketing d’un acteur, d’une organisation au regard d’un secteur ou d’un marché",
+  expl:"Analyse du marché de la sneaker, des stratégies de communication des marques concurrentes et des tendances de consommation afin de définir le positionnement et les axes de communication de Prismatik."
+},
+{
+  code:"AC21.02",
+  comp:"1",
+  compName:"Comprendre",
+  title:"Auditer un site web, une marque ou un service, en termes de trafic et de référencement",
+  expl:"Analyse de la visibilité numérique de Prismatik et évaluation des leviers de référencement afin d'identifier les opportunités d'amélioration du positionnement de la marque et de son site e-commerce."
+},
+{
+  code:"AC22.04",
+  comp:"2",
+  compName:"Concevoir",
+  title:"Optimiser le référencement d’un site web, d’un produit ou d’un service",
+  expl:"Définition d'une stratégie SEO visant à améliorer la visibilité de Prismatik et de ses collections de sneakers à travers l'optimisation des contenus, des fiches produits et des mots-clés."
+},
+{
+  code:"AC22.05",
+  comp:"2",
+  compName:"Concevoir",
+  title:"Mettre en place une présence sur les réseaux sociaux",
+  expl:"Conception d'une stratégie de présence sur Instagram et TikTok afin de développer la notoriété de Prismatik et fédérer une communauté autour de la marque."
+},
+{
+  code:"AC32.02",
+  comp:"2",
+  compName:"Concevoir",
+  title:"Bâtir une présence en ligne professionnelle",
+  expl:"Conception de l'écosystème digital de Prismatik à travers la création d'un site e-commerce, la définition d'une identité de marque cohérente et le déploiement d'une présence sur les réseaux sociaux."
+},
+{
+  code:"AC32.03",
+  comp:"2",
+  compName:"Concevoir",
+  title:"Concevoir et mettre en oeuvre une communication 360, plurimédia ou transmédia",
+  expl:"Déploiement d'une communication cohérente entre le site e-commerce, les réseaux sociaux et les différents supports promotionnels afin de renforcer l'identité de marque de Prismatik."
+},
+{
+  code:"AC32.04",
+  comp:"2",
+  compName:"Concevoir",
+  title:"Construire des outils de validation et de suivi",
+  expl:"Définition d'indicateurs de performance permettant de mesurer l'efficacité des actions marketing, l'engagement sur les réseaux sociaux et les performances du site e-commerce."
+},
+{
+  code:"AC23.04",
+  comp:"3",
+  compName:"Exprimer",
+  title:"Imaginer, écrire et scénariser en vue d’une communication multimédia ou transmédia",
+  expl:"Création d'un storytelling de marque mettant en avant l'univers de Prismatik et déclinant une narration cohérente sur les différents points de contact de la marque."
+},
+{
+  code:"AC13.05",
+  comp:"3",
+  compName:"Exprimer",
+  title:"Designer une interface web",
+  expl:"Conception des wireframes et de l'interface utilisateur du site e-commerce Prismatik afin d'offrir une expérience d'achat fluide et cohérente avec l'image premium de la marque."
+},
+{
+  code:"AC24.02",
+  comp:"4",
+  compName:"Développer",
+  title:"Mettre en place ou développer un back office",
+  expl:"Développement d'un espace d'administration permettant la gestion des produits, des stocks et des contenus du site e-commerce Prismatik."
+},
+{
+  code:"AC24.05",
+  comp:"4",
+  compName:"Développer",
+  title:"Optimiser une application web en termes de référencement et de temps de chargement",
+  expl:"Optimisation des performances du site e-commerce afin de garantir des temps de chargement rapides et une meilleure visibilité dans les moteurs de recherche."
+},
+{
+  code:"AC24.06",
+  comp:"4",
+  compName:"Développer",
+  title:"Configurer une solution d’hébergement adaptée aux besoins",
+  expl:"Configuration d'une solution d'hébergement adaptée à un site e-commerce afin d'assurer la disponibilité, la sécurité et les performances de la plateforme."
+},
+{
+  code:"AC25.02",
+  comp:"5",
+  compName:"Entreprendre",
+  title:"Cartographier un écosystème",
+  expl:"Analyse de l'écosystème de Prismatik en identifiant les concurrents, les consommateurs, les influenceurs et les différents acteurs du marché de la sneaker afin de définir le positionnement de la marque."
+}
+    ]
+  },
+  {
+    id: "drinkme",
+    image: "media/COVER_DRINKME.jpg",
+    images: [
+      "media/COVER_DRINKME.jpg",
+      "media/TABLEAU_DRINKME.jpg",
+      "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=1200&q=80"
+    ],
+    title: "Drink-Me Dashboard",
+    year: "BUT3",
+    subtitle: "Dashboard • Data Visualization • Outil Stratégique",
+    domain: ["dashboard","data visualisation","UI","stratégie","gestion"],
+    context: "Ce projet s'est concentré sur la création d'un tableau de bord stratégique capable de suivre les indicateurs de performance, l'engagement, le trafic, la conversion et les ventes.",
+    mission: "Concevoir et développer un tableau de bord interactif permettant aux dirigeants de Drink-Me de surveiller leurs KPI critiques en temps réel et prendre des décisions basées sur les données.",
+    realization: "J'ai développé un tableau de bord React avec Recharts. Le dashboard intègre : métriques clés, graphiques d'évolution, segmentation des canaux d'acquisition, entonnoir de conversion et NPS.",
+    demonstration: "Ce projet démontre ma capacité à concevoir des interfaces orientées données et transformer des chiffres bruts en outils de gestion stratégique accessibles et actionnables.",
+    acs: [
+{
+  code:"AC22.01",
+  comp:"2",
+  compName:"Concevoir",
+  title:"Co-concevoir un produit ou un service",
+  expl:"Participation à la conception de Drink-Me en définissant les fonctionnalités du dashboard, les indicateurs de performance et les besoins utilisateurs afin de proposer un outil d'aide à la décision adapté."
+},
+     {
+  code:"AC22.03",
+  comp:"2",
+  compName:"Concevoir",
+  title:"Co-construire une recommandation stratégique",
+  expl:"Identification des besoins décisionnels de Drink-Me et définition des indicateurs clés de performance afin de structurer un outil d'aide à la décision et formuler des recommandations stratégiques basées sur les données."
+},
+{
+  code:"AC32.04",
+  comp:"2",
+  compName:"Concevoir",
+  title:"Construire des outils de validation et de suivi",
+  expl:"Conception d'un tableau de bord interactif regroupant les KPI marketing, commerciaux et de communication afin d'assurer le suivi des performances et d'accompagner la prise de décision."
+},
+{
+  code:"AC14.01",
+  comp:"4",
+  compName:"Développer",
+  title:"Exploiter de manière autonome un environnement de développement efficace et productif",
+  expl:"Développement autonome du dashboard avec React, TypeScript, Vite et Recharts en mettant en place une architecture modulaire et un environnement de travail optimisé."
+},
+{
+  code:"AC14.02",
+  comp:"4",
+  compName:"Développer",
+  title:"Produire des pages Web fluides incluant un balisage sémantique efficace et des interactions simples",
+  expl:"Création d'une interface web responsive intégrant une structure HTML sémantique, des filtres interactifs et une navigation fluide pour faciliter l'analyse des données."
+},
+{
+  code:"AC14.03",
+  comp:"4",
+  compName:"Développer",
+  title:"Générer des pages Web à partir de données structurées",
+  expl:"Affichage dynamique des indicateurs, graphiques et tableaux à partir de jeux de données structurés afin de visualiser les performances de l'entreprise en temps réel."
+},
+{
+  code:"AC24.04",
+  comp:"4",
+  compName:"Développer",
+  title:"Modéliser les traitements d’une application web",
+  expl:"Conception de la logique de traitement des données du dashboard Drink-Me afin de structurer les indicateurs de performance, automatiser leur affichage et faciliter l'analyse des résultats par les décideurs."
+},
+{
+  code:"AC15.04",
+  comp:"5",
+  compName:"Entreprendre",
+  title:"Analyser un produit ou un service innovant en identifiant les propositions de valeurs et en évaluant les solutions proposées",
+  expl:"Analyse du positionnement de Drink-Me et de ses besoins de pilotage afin de concevoir une solution innovante de suivi des performances marketing, commerciales et communicationnelles."
+}
+    ]
+  },
+  {
+    id: "mot-heros",
+    image: "media/COVER_MDH.jpg",
+    images : [
+      "media/COVER_MDH.jpg",
+      "media/ILLU_MDH.jpg",
+      "media/ILLU_2_MDH.jpg",
+      "media/ILLU_3_MDH.jpg",
+      "media/ILLU_4_MDH.jpg"
+    ],
+    title: "Le Mot des Héros",
+    year: "Alternance",
+    subtitle: "Communication Vidéo • Communication Interne • Marque Employeur",
+    domain: ["audiovisuel","communication","interview","montage vidéo","storytelling"],
+    context: "Concept de communication interne créé en alternance pour humaniser la communication de l'entreprise à travers des interviews, du storytelling et la visibilité des employés.",
+    mission: "Concevoir un format de communication interne engageant pour mettre en valeur les employés, renforcer la culture d'entreprise et produire du contenu authentique.",
+    realization: "J'ai développé le concept 'Le Mot des Héros' : format interview de 2-3 min, cadrage intimiste. J'ai produit 5 épisodes pilotes avec capture vidéo, montage Premiere Pro et distribution sur intranet.",
+    demonstration: "Ce projet démontre ma capacité à identifier les besoins organisationnels, concevoir des formats innovants et maîtriser la production audiovisuelle de bout en bout.",
+    acs: [
+{
+  code:"AC13.04",
+  comp:"3",
+  compName:"Exprimer",
+  title:"Tourner et monter une vidéo",
+  expl:"Réalisation des interviews du projet Le Mot des Héros, comprenant la captation vidéo, la sélection des plans, le montage et l'habillage des contenus destinés à valoriser les collaborateurs du groupe."
+},
+{
+  code:"AC13.06",
+  comp:"3",
+  compName:"Exprimer",
+  title:"Optimiser les médias en fonction de leurs usages et supports de diffusion",
+  expl:"Adaptation des contenus visuels et audiovisuels aux différents canaux de diffusion afin de garantir leur lisibilité, leur impact et leur cohérence sur les supports numériques utilisés."
+},
+      {
+  code:"AC32.01",
+  comp:"2",
+  compName:"Concevoir",
+  title:"Projeter les futurs possibles d’une organisation, d’une marque, d’un service, produit ou secteur",
+  expl:"Conception d'un format de communication valorisant les collaborateurs du groupe afin de renforcer la marque employeur, développer l'engagement interne et mettre en avant les métiers de l'entreprise."
+},
+{
+  code:"AC35.01",
+  comp:"5",
+  compName:"Entreprendre",
+  title:"Piloter un produit, un service ou une équipe",
+  expl:"Coordination des différentes étapes du projet Le Mot des Héros, de la préparation des interviews à la diffusion des contenus, en assurant le respect du planning et des objectifs de communication."
+},
+{
+  code:"AC35.02",
+  comp:"5",
+  compName:"Entreprendre",
+  title:"Maîtriser la qualité en projet Web ou multimédia",
+  expl:"Contrôle de la qualité des contenus audiovisuels produits à travers la vérification des prises de vue, du montage, de la cohérence éditoriale et du respect des standards de communication du groupe."
+}
+    ]
+  },
+  {
+    id: "biere-chai",
+    image: "media/COVER_BDC.jpg",
+    images: [
+      "media/COVER_BDC.jpg",
+      "media/ILLU_BDC.jpg",
+      "media/ILLU_2_BDC.jpg",
+    ],
+    title: "La Bière du Chai",
+    year: "Alternance",
+    subtitle: "Rebranding • Packaging • Direction Artistique • Design Produit",
+    domain: ["branding","packaging","direction artistique","identité visuelle","communication"],
+    context: "Projet professionnel réalisé en alternance autour du rebranding d'une gamme de bières avec réflexion sur l'identité visuelle, la cohérence de marque et les contraintes réglementaires.",
+    mission: "Concevoir une nouvelle identité visuelle pour une gamme de bières en respectant les contraintes réglementaires, créer des étiquettes cohérentes et définir une stratégie de communication.",
+    realization: "J'ai créé une charte graphique complète (typographie, palette, iconographie) et conçu les étiquettes avec les mentions obligatoires. Production de supports plurimédia pour la communication produit.",
+    demonstration: "Ce projet démontre ma capacité à gérer un rebranding complet en intégrant les contraintes juridiques, à collaborer en organisation et décliner une identité sur plusieurs supports.",
+    acs: [
+{
+  code:"AC11.05",
+  comp:"1",
+  compName:"Comprendre",
+  title:"Identifier les cibles",
+  expl:"Analyse des profils de consommateurs de bières artisanales et identification des publics visés par la refonte de La Bière du Chai afin d'adapter l'identité visuelle et le positionnement de la marque."
+},
+      {
+  code:"AC21.01",
+  comp:"1",
+  compName:"Comprendre",
+  title:"Analyser la stratégie de communication ou marketing d’un acteur, d’une organisation au regard d’un secteur ou d’un marché",
+  expl:"Réalisation d'un benchmark des bières artisanales concurrentes afin d'identifier les tendances du marché, les codes visuels du secteur et les opportunités de différenciation pour La Bière du Chai."
+},
+{
+  code:"AC23.02",
+  comp:"3",
+  compName:"Exprimer",
+  title:"Définir une iconographie",
+  expl:"Sélection et création d'éléments visuels cohérents avec l'univers artisanal et local de La Bière du Chai afin de renforcer l'identité de la marque sur les différents supports de communication."
+},
+{
+  code:"AC23.03",
+  comp:"3",
+  compName:"Exprimer",
+  title:"Créer et décliner une identité visuelle",
+  expl:"Conception de la nouvelle identité visuelle de La Bière du Chai à travers la création et la déclinaison des étiquettes sur l'ensemble de la gamme tout en assurant la cohérence graphique de la marque."
+},
+{
+  code:"AC23.05",
+  comp:"3",
+  compName:"Exprimer",
+  title:"Réaliser, composer et produire pour une communication plurimédia",
+  expl:"Production des supports visuels destinés à la valorisation de La Bière du Chai en adaptant les créations aux différents usages de communication print et numérique."
+},
+{
+  code:"AC15.06",
+  comp:"5",
+  compName:"Entreprendre",
+  title:"Interagir au sein des organisations",
+  expl:"Collaboration avec les différents acteurs du projet La Bière du Chai, notamment le brasseur, la direction et les responsables concernés, afin de recueillir les besoins, valider les propositions et assurer le suivi du projet."
+},
+{
+  code:"AC25.01",
+  comp:"5",
+  compName:"Entreprendre",
+  title:"Gérer un projet avec une méthode d’amélioration continue",
+  expl:"Organisation du projet à travers la planification des tâches, le suivi de l'avancement et l'amélioration progressive des livrables en fonction des retours obtenus tout au long du développement."
+},
+{
+  code:"AC25.04",
+  comp:"5",
+  compName:"Entreprendre",
+  title:"Collaborer au sein des organisations",
+  expl:"Collaboration avec le brasseur, la direction et les différents interlocuteurs du projet afin de recueillir les besoins, valider les propositions graphiques et assurer le bon déroulement de la refonte."
+},
+{
+  code:"AC25.06",
+  comp:"5",
+  compName:"Entreprendre",
+  title:"Prendre en compte les contraintes juridiques",
+  expl:"Respect des obligations légales liées à l'étiquetage des boissons alcoolisées et intégration des mentions réglementaires dans la conception des nouvelles étiquettes."
+}
+    ]
+  }
+];
+
+/* ================================================================
+   DONNÉES COMPÉTENCES — modifie les textes ici si besoin
+================================================================ */
+var COMPS = {
+  comprendre:{id:"comprendre",n:"01",title:"Comprendre",icon:"📊",
+    desc:"Analyser les besoins d'un projet et comprendre son contexte. Maîtriser les méthodes de recherche utilisateur, d'analyse de données et d'étude de marché pour orienter efficacement les décisions de conception.",
+    evo:[{p:"BUT 1",ac:3,d:"Apprentissage des fondamentaux de l'analyse des formes médiatiques et de l'identification des cibles."},{p:"BUT 2",ac:6,d:"Développement des compétences d'audit et d'analyse stratégique des communications et marchés."},],
+    refl:{y1:"Apprentissage des fondamentaux de la mise en page, de la hiérarchie visuelle et de la direction artistique à travers des projets éditoriaux et de branding.",y2:"Développement de projets plus complets et stratégiques mêlant branding, communication, SEO, UX/UI et développement web.",y3:"Professionnalisation via des projets réels, pensée stratégique, gestion de projet et systèmes de communication."},
+    proj:{y1:["onestowatch","sae-banque"],y2:["prismatik","biere-chai"],y3:[]}
+  },
+  concevoir:{id:"concevoir",n:"02",title:"Concevoir",icon:"✏️",
+    desc:"Imaginer et prototyper des solutions créatives adaptées aux besoins identifiés. Maîtriser les outils de conception graphique, d'UX/UI design et de création d'identités visuelles fortes.",
+    evo:[{p:"BUT 1",ac:3,d:"Apprentissage de la proposition de valeur, des recommandations marketing et de la conception d'interfaces UI."},{p:"BUT 2",ac:8,d:"Développement de stratégies de communication et de compétences en communication 360°."},{p:"BUT 3 + Alternance",ac:12,d:"Professionnalisation via des projets réels et consolidation des compétences stratégiques."}],
+    refl:{y1:"Apprentissage des fondamentaux de la mise en page, de la hiérarchie visuelle et de la direction artistique à travers des projets éditoriaux et de branding.",y2:"Développement de projets plus complets et stratégiques mêlant branding, communication, SEO, UX/UI et développement web.",y3:"Professionnalisation via des projets réels, pensée stratégique, gestion de projet et systèmes de communication."},
+    proj:{y1:["sae-banque"],y2:["prismatik"],y3:["mot-heros","drinkme"]}
+  },
+  exprimer:{id:"exprimer",n:"03",title:"Exprimer",icon:"🎨",
+    desc:"Communiquer efficacement un message à travers différents médias. Maîtriser la création graphique, la direction artistique, l'audiovisuel et le storytelling visuel pour créer des contenus impactants.",
+    evo:[{p:"BUT 1",ac:2,d:"Apprentissage des fondamentaux de la création visuelle et de la direction artistique."},{p:"BUT 2",ac:7,d:"Développement des compétences en iconographie et identité visuelle."},{p:"+ Alternance",ac:9,d:"Maîtrise de la communication plurimédia et de la production audiovisuelle."}],
+    refl:{y1:"Apprentissage des fondamentaux de la mise en page, de la hiérarchie visuelle et de la direction artistique à travers des projets éditoriaux et de branding.",y2:"Développement de projets plus complets et stratégiques mêlant branding, communication, SEO, UX/UI et développement web.",y3:"Professionnalisation via des projets réels, pensée stratégique, gestion de projet et systèmes de communication."},
+    proj:{y1:["onestowatch"],y2:["biere-chai","prismatik"],y3:["mot-heros"]}
+  },
+  developper:{id:"developper",n:"04",title:"Développer",icon:"⚙️",
+    desc:"Créer des solutions techniques fonctionnelles et performantes. Maîtriser le développement web front-end et back-end, l'optimisation des performances et la gestion de l'hébergement.",
+    evo:[{p:"BUT 1",ac:3,d:"Initiation au développement web et aux fondamentaux techniques."},{p:"BUT 2",ac:7,d:"Maîtrise du développement front-end, back-end et optimisation SEO."},],
+    refl:{y1:"Apprentissage des fondamentaux techniques.",y2:"Développement de projets plus complets mêlant branding, SEO, UX/UI et développement web.",y3:"Professionnalisation via des projets réels et gestion de projets techniques complexes."},
+    proj:{y1:[],y2:["prismatik"],y3:["drinkme"]}
+  },
+  entreprendre:{id:"entreprendre",n:"05",title:"Entreprendre",icon:"🚀",
+    desc:"Gérer et piloter un projet numérique de bout en bout. Maîtriser la gestion de projet, le leadership d'équipe, la budgétisation et l'entrepreneuriat dans le secteur du numérique.",
+    evo:[{p:"BUT 1",ac:1,d:"Initiation à la gestion de projet et aux fondamentaux entrepreneuriaux."},{p:"BUT 2",ac:6,d:"Développement des compétences de gestion de projet et d'innovation."},{p:"BUT 3 + Alternance",ac:9,d:"Maîtrise du pilotage de projets et de la collaboration organisationnelle."}],
+    refl:{y1:"Apprentissage des bases de la gestion de projet.",y2:"Développement de projets plus complets et stratégiques.",y3:"Professionnalisation via des projets réels, pilotage et collaboration organisationnelle."},
+    proj:{y1:["sae-banque"],y2:["biere-chai","prismatik"],y3:["drinkme",,"mot-heros"]}
+  }
+};
+var COMP_ORDER = ["comprendre","concevoir","exprimer","developper","entreprendre"];
+
+/* ================================================================
+   ÉTAT & LOGIQUE
+================================================================ */
+var mode = "professional";
+var currentPage = "home";
+var carImgs = [];
+var carIdx = 0;
+var activeFilter = "Tous";
+
+document.addEventListener("DOMContentLoaded", function(){
+  document.getElementById("mode-toggle").onclick = toggleMode;
+  document.getElementById("logo").onclick = function(){ navigateTo("home"); };
+  document.getElementById("proj-close").onclick = closeProjModal;
+  document.getElementById("proj-overlay").onclick = function(e){ if(e.target===this) closeProjModal(); };
+  document.getElementById("evo-close").onclick = closeEvoModal;
+  document.getElementById("evo-overlay").onclick = function(e){ if(e.target===this) closeEvoModal(); };
+  document.getElementById("car-prev").onclick = function(){ moveCar(-1); };
+  document.getElementById("car-next").onclick = function(){ moveCar(1); };
+  document.addEventListener("keydown", function(e){ if(e.key==="Escape"){closeProjModal();closeEvoModal();} });
+  document.documentElement.classList.add("dark");
+  buildCompPages();
+  buildMpFilters();
+  renderNav();
+  loadHomePage();
+  navigateTo("home");
+});
+
+/* NAV */
+function navigateTo(page){
+  currentPage = page;
+  document.querySelectorAll(".page").forEach(function(p){ p.classList.remove("active"); });
+  var el = document.getElementById("page-"+page);
+  if(el){ el.classList.add("active"); window.scrollTo({top:0,behavior:"smooth"}); }
+  if(page==="mes-projets") renderMpGrid();
+  renderNav();
+}
+
+function renderNav(){
+  var proL = [{l:"Mes Projets",p:"mes-projets"},{l:"Contact",p:"contact"}];
+  var acaL = COMP_ORDER.map(function(id){ return {l:COMPS[id].title,p:"comp-"+id}; });
+  var links = mode==="professional" ? proL : acaL;
+  var html = function(arr){ return arr.map(function(x){
+    return "<li><a href='#' class='"+(currentPage===x.p?"active":"")+"' onclick='event.preventDefault();navigateTo(\""+x.p+"\")'>"+x.l+"</a></li>";
+  }).join(""); };
+  var mhtml = function(arr){ return arr.map(function(x){
+    return "<a href='#' class='"+(currentPage===x.p?"active":"")+"' onclick='event.preventDefault();navigateTo(\""+x.p+"\")'>"+x.l+"</a>";
+  }).join(""); };
+  document.getElementById("nav-links").innerHTML = html(links);
+  document.getElementById("nav-mobile").innerHTML = mhtml(links);
+  document.getElementById("mode-label").textContent = mode==="professional"?"Professionnel":"Académique";
+  var fn = document.getElementById("footer-nav");
+  if(fn) fn.innerHTML = links.map(function(x){
+    return "<li><a href='#' onclick='event.preventDefault();navigateTo(\""+x.p+"\")'>"+x.l+"</a></li>";
+  }).join("");
+}
+
+/* MODE */
+function toggleMode(){
+  mode = mode==="professional"?"academic":"professional";
+  if(mode==="professional") document.documentElement.classList.add("dark");
+  else document.documentElement.classList.remove("dark");
+  var proP = ["mes-projets","contact"];
+  var acaP = COMP_ORDER.map(function(id){ return "comp-"+id; });
+  if(mode==="professional"&&acaP.indexOf(currentPage)>=0){ loadHomePage();navigateTo("home");return; }
+  if(mode==="academic"&&proP.indexOf(currentPage)>=0){ loadHomePage();navigateTo("home");return; }
+  loadHomePage(); renderNav();
+}
+
+/* HOME PAGE */
+function loadHomePage(){
+  var el = document.getElementById("page-home");
+  if(mode==="professional") el.innerHTML = buildProHome();
+  else el.innerHTML = buildAcaHome();
+}
+
+function buildProHome(){
+  var projCards = PROJECTS.map(function(p,i){
+    return "<div class='pcard' onclick='openProjModal(\""+p.id+"\")'>"
+      +"<div class='pcard-img'><img src='"+p.image+"' alt='"+p.title+"' loading='lazy'>"
+      +"<span class='pbadge tl'>"+String(i+1).padStart(2,"0")+"</span>"
+      +"<span class='pbadge tr'>"+p.year+"</span>"
+      +"<div class='pcard-overlay'><div class='ptags'>"+p.domain.slice(0,4).map(function(d){return "<span class='ptag'>#"+d+"</span>";}).join("")+"</div></div>"
+      +"</div><h3 class='pcard-title'>"+p.title+"</h3><p class='pcard-desc'>"+p.subtitle+"</p></div>";
+  }).join("");
+
+  return "<div class='wrap'>"
+    /* Hero */
+    +"<div class='section'><div class='grid2' style='align-items:center;gap:4rem'>"
+    +"<div>"
+    +"<div class='tag' style='margin-bottom:1.8rem'>Designer UX/UI • Assistant Marketing</div>"
+    +"<h1 class='hero-h'><b>Créer des</b><br><span style='font-weight:300'>Expériences</span><br><b>Digitales</b></h1>"
+    +"<div class='hero-bar' style='margin-top:2rem'><div class='vline'></div>"
+    +"<p class='hero-txt'>Actuellement en alternance chez PACA PARTICIPATIONS, je combine design brutaliste et approche stratégique pour créer des expériences digitales impactantes. Ma double casquette marketing et design me permet de concevoir des solutions qui allient esthétique audacieuse et performance commerciale.</p></div>"
+    +"</div>"
+    /* Portrait */
+    +"<div class='portrait r34'>"
+    /* ↓ REMPLACE PAR TA PROPRE PHOTO */
+  +"<img src='media/IMG_0086.jpeg' alt='Killian BENABIDI'>"
+    +"<div class='portrait-badge'>Provence-Alpes-Côte-d'Azur, France</div></div>"
+    +"</div></div>"
+    /* Timeline */
+    +"<div class='section'><p class='label'>01 / Parcours</p>"
+    +"<h2 style='font-size:2rem;font-weight:700;text-transform:uppercase;margin-bottom:2.5rem'><b>Frise</b> <span style='font-weight:300'>Professionnelle</span></h2>"
+    +"<div class='timeline'>"
+    +"<div class='tl-item'><div class='tl-dot'>🎓</div><div class='tl-box'><div class='tl-period'>2021</div><h3 class='tl-title'>Baccalauréat STI2D</h3><p class='tl-sub'>Spécialité Architecture et Construction</p><p class='tl-loc'>Lycée Thomas Edison, Lorgues</p></div></div>"
+    +"<div class='tl-item'><div class='tl-dot'>💼</div><div class='tl-box'><div class='tl-period'>Sept. 2021 – Sept. 2023 (Temps partiel/plein)</div><h3 class='tl-title'>Employé Commercial</h3><p class='tl-sub'>Hyper U Les Arcs</p><p class='tl-loc'>Les Arcs, Provence-Alpes-Côte-d'Azur</p><p class='tl-desc'>Accueil client, merchandising et gestion des stocks en parallèle des études.</p></div></div>"
+    +"<div class='tl-item'><div class='tl-dot'>💼</div><div class='tl-box'><div class='tl-period'>Étés 2021, 2022, 2023</div><h3 class='tl-title'>Agent Saisonnier</h3><p class='tl-sub'>Commune de Vidauban</p><p class='tl-loc'>Vidauban, Provence-Alpes-Côte-d'Azur</p><p class='tl-desc'>Service bâtiments communaux et organisation de festivités.</p></div></div>"
+    +"<div class='tl-item'><div class='tl-dot'>🎓</div><div class='tl-box'><div class='tl-period'>2023 – 2026 (En cours)</div><h3 class='tl-title'>BUT Métiers du Multimédia et de l'Internet</h3><p class='tl-sub'>Spécialisation UX/UI & Communication</p><p class='tl-loc'>IUT MMI de Toulon</p></div></div>"
+    +"<div class='tl-item'><div class='tl-dot hl'>💼</div><div class='tl-box hl'><div class='tl-head'><div><div class='tl-period'>Sept. 2023 – Aujourd'hui (Alternance)</div><h3 class='tl-title'>Assistant Marketing, Communication & Animation</h3><p class='tl-sub'>PACA PARTICIPATIONS</p><p class='tl-loc'>Les Arcs, Provence-Alpes-Côte d'Azur</p></div><span class='tl-badge'>Actuel</span></div><p class='tl-desc'>Gestion de projets marketing, création de contenu, communication interne et externe, animation d'événements.</p></div></div>"
+    +"</div></div>"
+    /* Projets */
+    +"<div class='section'><p class='label'>02 / Réalisations</p>"
+    +"<h2 style='font-size:2rem;font-weight:700;text-transform:uppercase;margin-bottom:2.5rem'><b>Projets</b> <span style='font-weight:300'>Sélectionnés</span></h2>"
+    +"<div class='proj-grid'>"+projCards+"</div>"
+    +"<div style='margin-top:2.5rem;text-align:center'><button class='btn btn-outline' onclick='navigateTo(\"mes-projets\")'>Voir tous les projets →</button></div>"
+    +"</div>"
+    /* Philosophie */
+    +"<div class='section'><div class='phil-grid'>"
+    +"<div><p class='label'>03 / Approche</p><h2 style='font-size:2rem;font-weight:700;text-transform:uppercase'><b>Philosophie</b> <span style='font-weight:300'>de Design</span></h2></div>"
+    +"<div class='phil-text'><p>Pour moi, concevoir une expérience, c'est d'abord comprendre la psychologie humaine pour éliminer les frictions et créer des parcours fluides, intuitifs et porteurs d'émotions. Qu'il s'agisse d'une interface digitale ou d'un dispositif physique, chaque interaction doit être intentionnelle et justifiée.</p><p>Cette vision globale, je l'applique sur le terrain. Mes 3 années d'alternance chez PACA PARTICIPATIONS m'ont permis de confronter ma créativité aux réalités du marché. En évoluant vers le poste de Chargé d’Expérience Client, j'ai appris à cartographier des parcours complexes et à concevoir des solutions concrètes qui répondent aux besoins des usagers tout en servant les objectifs stratégiques de l'entreprise.</p><p>Mon but est de connecter le virtuel et le réel pour concevoir des dispositifs interactifs qui marquent durablement les esprits.</p></div>"
+    +"</div></div>"
+    /* CTA */
+    +"<div class='section'><div class='cta-block'><div class='cta-inner'>"
+    +"<div><h2 style='font-size:1.8rem;font-weight:700;text-transform:uppercase;margin-bottom:.8rem'><b>Discutons</b> <span style='font-weight:300'>de votre projet</span></h2>"
+    +"<p style='font-size:1.05rem;opacity:.8;line-height:1.7'>Vous avez un projet digital ambitieux ? Je serais ravi d'échanger sur la manière dont je peux vous aider à créer une expérience utilisateur mémorable.</p></div>"
+    +"<button class='btn btn-solid' onclick='navigateTo(\"contact\")'>Me contacter →</button>"
+    +"</div></div></div>"
+    +"</div>";
+}
+
+function buildAcaHome(){
+  var compCards = COMP_ORDER.map(function(id){
+    var c = COMPS[id];
+    return "<div class='comp-card' onclick='navigateTo(\"comp-"+id+"\")'>"
+      +"<div class='comp-card-top'><span style='font-size:2.3rem'>"+c.icon+"</span><span class='comp-num'>"+c.n+"</span></div>"
+      +"<div class='comp-card-title'>"+c.title+"</div>"
+      +"<p class='comp-card-desc'>"+c.desc.split(".")[0]+".</p>"
+      +"</div>";
+  }).join("");
+  return "<div class='wrap'>"
+    +"<div class='section'><div class='grid2' style='align-items:center;gap:4rem'>"
+    +"<div class='portrait r34'>"
+    +"<img src='media/moi.jpeg' alt='Killian BENABIDI'>"
+    +"<div class='portrait-top'><span>Étudiant</span><span>📚 BUT MMI</span></div></div>"
+    +"<div>"
+    +"<div class='tag' style='margin-bottom:1.5rem'>Mode Académique</div>"
+    +"<h1 class='hero-h'><span style='font-weight:300'>Parcours</span><br><b>Académique</b><br><span style='font-weight:300'>& Formation</span></h1>"
+    +"<div class='hero-bar' style='margin-top:2rem'><div class='vline'></div>"
+    +"<div class='hero-txt'>"
+    +"<p style='margin-bottom:1.3rem'>Actuellement en BUT Métiers du Multimédia et de l'Internet (MMI), je développe des compétences transversales alliant design, développement et communication digitale.</p>"
+    +"<p>Cette section présente mon parcours structuré autour des 5 compétences clés du BUT MMI, avec une sélection de projets académiques illustrant ma progression.</p>"
+    +"</div></div></div></div></div>"
+    +"<div class='section'><p class='label'>Compétences</p>"
+    +"<h2 style='font-size:2rem;font-weight:700;text-transform:uppercase;margin-bottom:2.5rem'><b>Les 5</b> <span style='font-weight:300'>Compétences</span></h2>"
+    +"<div class='comp-cards'>"+compCards+"</div></div>"
+    +"<div class='section'><p class='label'>Formation</p>"
+    +"<h2 style='font-size:2rem;font-weight:700;text-transform:uppercase;margin-bottom:2rem'><b>Parcours</b></h2>"
+    +"<div class='path-item'><div class='path-year'>2023-2026</div><div><div class='path-title'>BUT Métiers du Multimédia et de l'Internet</div><div class='path-sub'>IUT MMI de Toulon • En cours</div><p class='path-desc'>Formation pluridisciplinaire combinant design, développement web, communication digitale et gestion de projet. Accent mis sur l'expérience utilisateur et la conception d'interfaces à travers 5 compétences clés.</p></div></div>"
+    +"<div class='path-item'><div class='path-year'>2021</div><div><div class='path-title'>Baccalauréat STI2D</div><div class='path-sub'>Spécialité Architecture et Construction • Lycée Thomas Edison, Lorgues</div><p class='path-desc'>Formation technique développant une approche rigoureuse de la conception et une sensibilité pour les aspects visuels et structurels des projets.</p></div></div>"
+    +"</div></div>";
+}
+
+/* MES PROJETS */
+function buildMpFilters(){
+  var domains = ["Tous"];
+  PROJECTS.forEach(function(p){ p.domain.forEach(function(d){ if(domains.indexOf(d)<0) domains.push(d); }); });
+  var el = document.getElementById("mp-filters");
+  if(!el) return;
+  el.innerHTML = domains.map(function(d){
+    return "<button class='filter-btn "+(d===activeFilter?"active":"")+"' onclick='setFilter(\""+d+"\")'>"+d+"</button>";
+  }).join("");
+}
+function setFilter(f){ activeFilter=f; buildMpFilters(); renderMpGrid(); }
+function renderMpGrid(){
+  var el = document.getElementById("mp-grid");
+  var cnt = document.getElementById("mp-count");
+  if(!el) return;
+  var list = activeFilter==="Tous" ? PROJECTS : PROJECTS.filter(function(p){ return p.domain.indexOf(activeFilter)>=0; });
+  el.innerHTML = list.map(function(p,i){
+    return "<div class='pcard' onclick='openProjModal(\""+p.id+"\")'>"
+      +"<div class='pcard-img'><img src='"+p.image+"' alt='"+p.title+"' loading='lazy'>"
+      +"<span class='pbadge tl'>"+p.year+"</span>"
+      +"<span class='pbadge tr'>"+String(i+1).padStart(2,"0")+"</span>"
+      +"<div class='pcard-overlay'><div class='ptags'>"+p.domain.slice(0,4).map(function(d){return "<span class='ptag'>#"+d+"</span>";}).join("")+"</div></div>"
+      +"</div><h3 class='pcard-title'>"+p.title+"</h3><p class='pcard-desc'>"+p.subtitle+"</p></div>";
+  }).join("");
+  if(cnt) cnt.textContent = list.length+" projet"+(list.length>1?"s":"");
+}
+
+/* PAGES COMPÉTENCES */
+function buildCompPages(){
+  COMP_ORDER.forEach(function(id){
+    var c = COMPS[id];
+    var el = document.getElementById("page-comp-"+id);
+    if(!el) return;
+    var yBtns = ["y1","y2","y3"].map(function(y){
+      var ids = c.proj[y]||[];
+      if(!ids.length) return "";
+      var lab = {y1:"BUT1",y2:"BUT2",y3:"BUT3 + Alternance"};
+      return "<button class='year-btn "+(y==="y1"&&ids.length?"active":"")+"' data-y='"+y+"' onclick='setYear(\""+id+"\",\""+y+"\")'>"+lab[y]+"</button>";
+    }).join("");
+    el.innerHTML = "<div class='wrap'><div class='section'>"
+      +"<div class='comp-header'>"
+      +"<div>"
+      +"<div class='comp-icon-row'><span class='comp-icon'>"+c.icon+"</span><span class='comp-badge'>Compétence "+c.n+"</span></div>"
+      +"<h1 class='comp-page-title'>"+c.title+"</h1>"
+      +"<div class='hero-bar'><div class='vline'></div><p class='hero-txt'>"+c.desc+"</p></div>"
+      +"</div>"
+      +"<button class='btn-evo' onclick='openEvoModal(\""+id+"\")'>📈 Mon Évolution</button>"
+      +"</div>"
+      +"<div style='margin-bottom:2rem'><p class='label' style='margin-bottom:.5rem'>Sélectionner l'année</p>"
+      +"<div id='yf-"+id+"'>"+yBtns+"</div></div>"
+      +"<div class='proj-grid' id='cg-"+id+"'></div>"
+      +"</div></div>";
+    var first = c.proj.y1&&c.proj.y1.length?"y1":c.proj.y2&&c.proj.y2.length?"y2":"y3";
+    renderCompGrid(id,first);
+  });
+}
+
+function setYear(cid,y){
+  var el = document.getElementById("yf-"+cid);
+  if(el) el.querySelectorAll(".year-btn").forEach(function(b){ b.classList.toggle("active",b.dataset.y===y); });
+  renderCompGrid(cid,y);
+}
+
+function renderCompGrid(cid,y){
+  var el = document.getElementById("cg-"+cid);
+  if(!el) return;
+  var ids = COMPS[cid].proj[y]||[];
+  var unique = ids.filter(function(v,i,a){ return a.indexOf(v)===i; });
+  var list = unique.map(function(id){ return PROJECTS.find(function(p){ return p.id===id; }); }).filter(Boolean);
+  if(!list.length){ el.innerHTML="<div class='empty-state'>Aucun projet pour cette période</div>"; return; }
+  el.innerHTML = list.map(function(p){
+    return "<div class='pcard' onclick='openProjModal(\""+p.id+"\")'>"
+      +"<div class='pcard-img'><img src='"+p.image+"' alt='"+p.title+"' loading='lazy'>"
+      +"<span class='pbadge tl'>"+p.year+"</span>"
+      +"<div class='pcard-overlay'><div class='ptags'>"+p.domain.slice(0,4).map(function(d){return "<span class='ptag'>#"+d+"</span>";}).join("")+"</div></div>"
+      +"</div><h3 class='pcard-title'>"+p.title+"</h3><p class='pcard-desc'>"+p.subtitle+"</p>"
+      +"<div class='ptags' style='margin-top:8px'>"+p.domain.slice(0,3).map(function(d){return "<span class='ptag'>"+d+"</span>";}).join("")+"</div>"
+      +"</div>";
+  }).join("");
+}
+
+/* MODAL PROJET */
+function openProjModal(id){
+  var p = PROJECTS.find(function(x){ return x.id===id; });
+  if(!p) return;
+  carImgs = p.images||[p.image];
+  carIdx = 0;
+  document.getElementById("proj-tags").innerHTML = "<span class='modal-tag'>"+p.year+"</span>"+p.domain.map(function(d){return "<span class='modal-tag'>"+d+"</span>";}).join("");
+  document.getElementById("proj-title").textContent = p.title;
+  document.getElementById("proj-subtitle").textContent = p.subtitle||"";
+  document.getElementById("proj-context").textContent = p.context||"";
+  document.getElementById("proj-mission").textContent = p.mission||"";
+  document.getElementById("proj-realization").textContent = p.realization||"";
+  document.getElementById("proj-demo").textContent = p.demonstration||"";
+  document.getElementById("proj-ac-list").innerHTML = (p.acs||[]).map(function(ac){
+    return "<div class='ac-card'><div class='ac-head'><div class='ac-badges'><span class='ac-code'>"+ac.code+"</span><span class='ac-comp'>Compétence "+ac.comp+" • "+ac.compName+"</span></div><span class='ac-type'>Principal</span></div><h4 class='ac-title'>"+ac.title+"</h4><p class='ac-expl'>"+ac.expl+"</p></div>";
+  }).join("");
+  renderCar();
+  document.getElementById("proj-overlay").classList.add("open");
+  document.body.style.overflow="hidden";
+}
+function closeProjModal(){ document.getElementById("proj-overlay").classList.remove("open"); document.body.style.overflow=""; }
+
+/* CARROUSEL */
+function renderCar(){
+  document.getElementById("car-img").src = carImgs[carIdx];
+  document.getElementById("car-counter").textContent = (carIdx+1)+" / "+carImgs.length;
+  document.getElementById("car-thumbs").innerHTML = carImgs.map(function(s,i){
+    return "<div class='car-thumb "+(i===carIdx?"active":"")+"' onclick='goCar("+i+")'><img src='"+s+"' loading='lazy'></div>";
+  }).join("");
+  var multi = carImgs.length>1;
+  ["car-prev","car-next","car-counter","car-thumbs"].forEach(function(id){
+    document.getElementById(id).style.display = multi?"":"none";
+  });
+}
+function moveCar(d){ carIdx=(carIdx+d+carImgs.length)%carImgs.length; renderCar(); }
+function goCar(i){ carIdx=i; renderCar(); }
+
+/* MODAL ÉVOLUTION */
+function openEvoModal(id){
+  var c = COMPS[id];
+  var max = Math.max.apply(null,c.evo.map(function(d){ return d.ac; }));
+  document.getElementById("evo-title").textContent = c.title;
+  document.getElementById("evo-gauges").innerHTML = "<div class='gauge-wrap'>"+c.evo.map(function(d){
+    var pct = Math.round(d.ac/max*100);
+    return "<div class='gauge-item'><div class='gauge-hd'><div class='gauge-l'><span class='gauge-period'>"+d.p+"</span><span class='gauge-desc'>"+d.d+"</span></div><span class='gauge-count'>"+d.ac+" AC</span></div>"
+      +"<div class='gauge-bar'><div class='gauge-fill' style='width:"+pct+"%'><span class='gauge-n'>"+d.ac+"</span></div></div></div>";
+  }).join("")+"</div>";
+  document.getElementById("evo-prog").innerHTML = c.evo.map(function(d){
+    return "<div class='prog-item'><span class='prog-badge'>"+d.ac+" AC</span><div><div class='prog-period'>"+d.p+"</div><p class='prog-text'>"+d.d+"</p></div></div>";
+  }).join("");
+  var r = c.refl;
+  document.getElementById("evo-refl").innerHTML =
+    (r.y1?"<div class='refl-item'><span class='refl-year'>1ère année</span><p class='refl-text'>"+r.y1+"</p></div>":"")
+    +(r.y2?"<div class='refl-item'><span class='refl-year'>2ème année</span><p class='refl-text'>"+r.y2+"</p></div>":"")
+    +(r.y3?"<div class='refl-item'><span class='refl-year'>3ème année</span><p class='refl-text'>"+r.y3+"</p></div>":"");
+  document.getElementById("evo-overlay").classList.add("open");
+  document.body.style.overflow="hidden";
+}
+function closeEvoModal(){ document.getElementById("evo-overlay").classList.remove("open"); document.body.style.overflow=""; }
+
+window.addEventListener("load", function(){ loadHomePage(); });
+</script>
+</body>
+</html>
