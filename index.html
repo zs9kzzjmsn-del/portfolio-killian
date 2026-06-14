@@ -353,6 +353,8 @@ footer{border-top:1px solid var(--border);margin-top:3rem}
 
   position:relative;
 
+  aspect-ratio:16/9;
+
   max-height:58vh;
 
   overflow:hidden;
@@ -1463,8 +1465,16 @@ function openProjModal(id){
     return "<div class='ac-card'><div class='ac-head'><div class='ac-badges'><span class='ac-code'>"+ac.code+"</span><span class='ac-comp'>Compétence "+ac.comp+" • "+ac.compName+"</span></div><span class='ac-type'>Principal</span></div><h4 class='ac-title'>"+ac.title+"</h4><p class='ac-expl'>"+ac.expl+"</p></div>";
   }).join("");
   renderCar();
-  document.getElementById("proj-overlay").classList.add("open");
-  document.body.style.overflow="hidden";
+
+document.getElementById("proj-overlay").classList.add("open");
+
+document.body.style.overflow = "hidden";
+
+setTimeout(function(){
+
+  document.querySelector(".modal-body").scrollTop = 0;
+
+}, 0);
 }
 function closeProjModal(){ document.getElementById("proj-overlay").classList.remove("open"); document.body.style.overflow=""; }
 
