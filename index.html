@@ -2,19 +2,19 @@
 <html lang="fr" class="dark">
 <head>
 <meta charset="UTF-8">
-<link rel="icon" type="image/png" href="media/FAVICON_KB.jpg">
-<link rel="apple-touch-icon" sizes="180x180" href="media/FAVICON_KB.jpg">
-<link rel="icon" type="image/png" sizes="32x32" href="media/FAVICON_KB.jpg">
-<link rel="icon" type="image/png" sizes="16x16" href="media/FAVICON_KB.jpg">
+<link rel="icon" type="image/png" href="media/FAVICON_KB.png">
+<link rel="apple-touch-icon" sizes="180x180" href="media/FAVICON_KB.png">
+<link rel="icon" type="image/png" sizes="32x32" href="media/FAVICON_KB.png">
+<link rel="icon" type="image/png" sizes="16x16" href="media/FAVICON_KB.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Killian BENABIDI — Portfolio</title>
-<meta name="description" content="Portfolio de Killian Benabidi, étudiant en BUT MMI spécialisé en communication digitale & UX/UI Design.">
+<meta name="description" content="Portfolio de Killian Benabidi, étudiant en BUT MMI spécialisé en communication & Design d'Expérience.">
 <meta name="author" content="Killian Benabidi">
 <meta name="robots" content="index, follow">
 <meta property="og:title" content="Killian Benabidi | Portfolio">
 <meta property="og:description" content="Portfolio MMI - Communication & Design d'Expérience">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://portfolio-killian-psi.vercel.app">
+<meta property="og:url" content="https://www.killianbenabidi.fr">
 <style>
 /* ============================================================
    THÈME — change les couleurs ici
@@ -708,7 +708,7 @@ var PROJECTS = [
     title: "Ones to Watch",
     year: "BUT1",
     subtitle: "Design Éditorial • Culture Sneaker & Streetwear",
-    domain: ["graphisme","direction artistique","édition","mise en page"],
+    domain: ["Identité Visuelle","Direction Artistique"],
     context: "Ce projet s'est concentré sur le design éditorial, la hiérarchie visuelle et la direction artistique à travers la création d'un magazine de trois pages inspiré de la culture sneaker et streetwear.",
     mission: "L'objectif était de démontrer la maîtrise de la composition de mise en page, de la typographie et de la cohérence éditoriale tout en capturant l'essence de la mode urbaine et de la culture sneaker.",
     realization: "J'ai développé une direction artistique brutalist-chic combinant typographies industrielles, systèmes de grille éditoriale asymétriques et sélection d'images de haute qualité.",
@@ -1452,6 +1452,14 @@ function openEvoModal(id){
 function closeEvoModal(){ document.getElementById("evo-overlay").classList.remove("open"); document.body.style.overflow=""; }
 
 window.addEventListener("load", function(){ loadHomePage(); });
+const lenis = new Lenis();
+
+function raf(time) {
+  lenis.raf(time);
+  requestAnimationFrame(raf);
+}
+
+requestAnimationFrame(raf);
 </script>
 </body>
 </html>
