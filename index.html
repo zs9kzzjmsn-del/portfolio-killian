@@ -15,6 +15,29 @@
 <meta property="og:description" content="Portfolio MMI - Communication & Design d'Expérience">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.killianbenabidi.fr">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+emailjs.init("0JqSOn7Pj9CFJSal5");
+
+document.getElementById("contact-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    emailjs.sendForm(
+        "service_qnayj9b",
+        "template_jq1v25n",
+        this
+    )
+    .then(function() {
+        alert("Message envoyé avec succès !");
+        document.getElementById("contact-form").reset();
+    })
+    .catch(function(error) {
+        console.error(error);
+        alert("Erreur lors de l'envoi du message.");
+    });
+});
+</script>
 <style>
 /* ============================================================
    THÈME — change les couleurs ici
@@ -556,12 +579,16 @@ html.dark .car-counter{background:rgba(10,10,10,.9);color:#fafaf9}
         <div>
           <p class="label">01 / Message</p>
           <h2 style="font-size:1.8rem;font-weight:700;text-transform:uppercase;margin-bottom:1.8rem"><b>Envoyer</b> <span style="font-weight:300">un Message</span></h2>
-          <form onsubmit="event.preventDefault();alert('Message envoyé !')">
+         <form id="contact-form">
+          
+          
+          
+          
             <div class="form-2col">
-              <div class="form-group"><label class="form-label">Nom</label><input class="form-input" type="text" placeholder="Votre nom" required></div>
-              <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" placeholder="votre@email.com" required></div>
+              <div class="form-group"><label class="form-label">Nom</label><input name="name" class="form-input" type="text" placeholder="Votre nom" required></div>
+              <div class="form-group"><label class="form-label">Email</label><input name="email" class="form-input" type="email" placeholder="votre@email.com" required></div>
             </div>
-            <div class="form-group"><label class="form-label">Sujet</label><input class="form-input" type="text" placeholder="Sujet de votre message" required></div>
+            <div class="form-group"><label class="form-label">Sujet</label><input name="subject" class="form-input" type="text" placeholder="Sujet de votre message" required></div>
             <div class="form-group"><label class="form-label">Message</label><textarea class="form-textarea" placeholder="Votre message..." required></textarea></div>
             <button class="btn btn-border" type="submit">Envoyer →</button>
             <p class="form-consent">
