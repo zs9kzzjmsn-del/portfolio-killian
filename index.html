@@ -18,25 +18,45 @@
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
 <script>
-emailjs.init("0JqSOn7Pj9CFJSal5");
 
-document.getElementById("contact-form").addEventListener("submit", function(e) {
-    e.preventDefault();
+document.addEventListener("DOMContentLoaded", function() {
 
-    emailjs.sendForm(
-        "service_qnayj9b",
-        "template_jq1v25n",
-        this
-    )
-    .then(function() {
-        alert("Message envoyé avec succès !");
-        document.getElementById("contact-form").reset();
-    })
-    .catch(function(error) {
-        console.error(error);
-        alert("Erreur lors de l'envoi du message.");
+    emailjs.init("0JqSOn7Pj9CFJSal5");
+
+    document.getElementById("contact-form").addEventListener("submit", function(e) {
+
+        e.preventDefault();
+
+        emailjs.sendForm(
+
+            "service_qnayj9b",
+
+            "template_jq1v25n",
+
+            this
+
+        )
+
+        .then(function() {
+
+            alert("Message envoyé avec succès !");
+
+            document.getElementById("contact-form").reset();
+
+        })
+
+        .catch(function(error) {
+
+            console.error(error);
+
+            alert("Erreur lors de l'envoi du message.");
+
+        });
+
     });
+
 });
+
 </script>
 <style>
 /* ============================================================
